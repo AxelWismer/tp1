@@ -1,0 +1,22 @@
+<!--Archivo base de los formularios de actualizacion-->
+{% extends 'number_generator/base.html' %}
+
+{% block app_content %}
+
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+
+<!-- Elimina el asterisco de los tags    -->
+{% include 'custom/snippets/asterisk_field.html' %}
+
+<form class="form-signin" enctype='multipart/form-data' method="post">{% csrf_token %}
+
+    {% block form %}
+        {% crispy form %}
+    {% endblock form %}
+    <div class="text-right">
+        <button class="btn btn-primary">Generar numeros</button>
+    </div>
+</form>
+
+{% endblock app_content %}
