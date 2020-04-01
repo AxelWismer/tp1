@@ -1,0 +1,33 @@
+<!--Archivo base de los formularios de actualizacion-->
+{% extends 'number_generator/base.html' %}
+
+{% block app_content %}
+
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+
+<!-- Elimina el asterisco de los tags    -->
+{% include 'custom/snippets/asterisk_field.html' %}
+
+<table class="table table-sm">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Valor</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  {% for num in numbers %}
+  <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{num}}</td>
+  </tr>
+  {% endfor %}
+
+  </tbody>
+</table>
+<div class="text-right">
+  <a class="btn btn-outline-dark" href="{% url 'number_generator:data_add_number' object.pk %}">Calcular proximo numero</a>
+</div>
+{% endblock app_content %}

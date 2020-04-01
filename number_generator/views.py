@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 # Create your views here.
 # Forms
 from .forms import DataForm
 from .models import Data
+import math
 
 
 class DataEntry(generic.FormView):
@@ -20,6 +21,29 @@ class DataEntry(generic.FormView):
             else:
                 data.a = 3 + 8 * data.k
             data.m = 2 ** data.g
-        print(data)
-        data.delete()
-        return render(self.request, self.template_name, self.get_context_data())
+        # Guardo el valor de la semilla de x
+        data.semilla = data.x
+        # Crea los primeros 20 valores de data
+        for i in range(20):
+            data.next_number()
+        data.save()
+        return data_detail(self.request, data.pk)
+
+
+# Muestra todos los numeros creados hasta el momento
+def data_detail(request, pk):
+    model = Data
+    template_name = 'number_generator/data_detail.html'
+    data = get_object_or_404(Data, pk=pk)
+    context = {}
+    context['object'] = data
+    context['numbers'] = data.number_set.all()
+    return render(request, template_name, context)
+
+
+# Agrega el proximo numero a la lista
+def add_number(request, pk):
+    data = get_object_or_404(Data, pk=pk)
+    data.next_number()
+    data.save()
+    return data_detail(request, data.pk)
