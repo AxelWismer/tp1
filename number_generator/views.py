@@ -15,11 +15,12 @@ class DataEntry(generic.FormView):
     def form_valid(self, form):
         data = self.object = form.save()
         # Si no se completa a o m se calculan los valores con k y g
-        if data.a == 0 or data.m == 0:
+        if data.a == 0:
             if data.method == 'Mi':
                 data.a = 1 + 4 * data.k
             else:
                 data.a = 3 + 8 * data.k
+        if data.m == 0:
             data.m = 2 ** data.g
         # Guardo el valor de la semilla de x
         data.semilla = data.x
