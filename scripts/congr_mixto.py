@@ -1,4 +1,5 @@
 ### Script para la generacion de numeros pseudo aleatorios segun el metodo de congruencia mixta
+### Prueba
 from .support import *
 
 # El usuario debe elegir el k y el g >= 20
