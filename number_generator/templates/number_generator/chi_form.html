@@ -1,0 +1,33 @@
+<!--Archivo base de los formularios de actualizacion-->
+{% extends 'number_generator/base.html' %}
+
+{% block app_content %}
+
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+
+<!-- Elimina el asterisco de los tags    -->
+{% include 'custom/snippets/asterisk_field.html' %}
+
+<form class="form-signin" enctype='multipart/form-data' method="post">{% csrf_token %}
+
+    {% block form %}
+    <h1 class="text-center">Generar numeros aleatoreos</h1>
+    <hr>
+
+    <div class="row">
+        <div class="col-6">
+            {{ form.number_amount|as_crispy_field }}
+        </div>
+        <div class="col-6">
+            {{ form.interval_amount|as_crispy_field }}
+        </div>
+    </div>
+
+    {% endblock form %}
+    <div class="text-right">
+        <button class="btn btn-primary">Generar numeros</button>
+    </div>
+</form>
+
+{% endblock app_content %}

@@ -1,0 +1,71 @@
+<!--Archivo base de los formularios de actualizacion-->
+{% extends 'number_generator/base.html' %}
+
+{% block app_content %}
+
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+
+<!-- Elimina el asterisco de los tags    -->
+{% include 'custom/snippets/asterisk_field.html' %}
+
+<div class="row">
+    <div class="col-2">
+        <table class="table table-sm">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Valor</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for num in numbers %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{num}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-10">
+        <table class="table table-sm">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Min</th>
+                <th scope="col">Max</th>
+                <th scope="col">Frecuencia esperada (Fe)</th>
+                <th scope="col">Frecuencia observada (Fo)</th>
+                <th scope="col">Fo - Fe</th>
+                <th scope="col">(Fo - Fe)²</th>
+                <th scope="col">(Fo - Fe)² / Fe</th>
+                <th scope="col">c = Σ(Fo - Fe)² / Fe</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for interv in intervals %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{interv.minimum}}</td>
+                <td>{{interv.maximum}}</td>
+                <td>{{interv.frec_esperada}}</td>
+                <td>{{interv.frec_observada}}</td>
+                <td>{{interv.calculo_1}}</td>
+                <td>{{interv.calculo_2}}</td>
+                <td>{{interv.calculo_3}}</td>
+                <td>{{interv.c}}</td>
+
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="text-right">
+    <a class="btn btn-outline-dark" href="{% url 'number_generator:data_add_number' object.pk %}">Calcular proximo numero</a>
+</div>
+{% endblock app_content %}
