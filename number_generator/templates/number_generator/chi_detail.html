@@ -31,18 +31,18 @@
     </div>
 
     <div class="col-10">
-        <table class="table table-sm">
+        <table class="table table-sm table-bordered">
             <thead class="thead-dark">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Min</th>
                 <th scope="col">Max</th>
-                <th scope="col">Frecuencia esperada (Fe)</th>
-                <th scope="col">Frecuencia observada (Fo)</th>
-                <th scope="col">Fo - Fe</th>
-                <th scope="col">(Fo - Fe)²</th>
-                <th scope="col">(Fo - Fe)² / Fe</th>
-                <th scope="col">c = Σ(Fo - Fe)² / Fe</th>
+                <th scope="col">Fe</th>
+                <th scope="col">Fo</th>
+                <th scope="col">Fo-Fe</th>
+                <th scope="col">(Fo-Fe)²</th>
+                <th scope="col">(Fo-Fe)² / Fe</th>
+                <th scope="col">c = Σ(Fo-Fe)² / Fe</th>
             </tr>
             </thead>
             <tbody>
@@ -63,9 +63,10 @@
             {% endfor %}
             </tbody>
         </table>
+
+        <div class="text-right">
+            <a class="btn btn-outline-dark" href="{% url 'number_generator:add_graphic' object.pk %}">Ver grafico</a>
+        </div>
     </div>
-</div>
-<div class="text-right">
-    <a class="btn btn-outline-dark" href="{% url 'number_generator:data_add_number' object.pk %}">Calcular proximo numero</a>
 </div>
 {% endblock app_content %}

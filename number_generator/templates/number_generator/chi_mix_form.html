@@ -1,0 +1,68 @@
+<!--Archivo base de los formularios de actualizacion-->
+{% extends 'number_generator/base.html' %}
+
+{% block app_content %}
+
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+
+<!-- Elimina el asterisco de los tags    -->
+{% include 'custom/snippets/asterisk_field.html' %}
+
+<form class="form-signin" enctype='multipart/form-data' method="post">{% csrf_token %}
+
+    {% block form %}
+    <h1 class="text-center">Generar numeros aleatoreos</h1>
+    <hr>
+
+    <div class="row">
+        <div class="col-6">
+            {{ form.x|as_crispy_field }}
+        </div>
+        <div class="col-6">
+            {{ form.c|as_crispy_field }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="border px-2">
+                {{ form.a|as_crispy_field }}
+                {{ form.m|as_crispy_field }}
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="border px-2">
+                {{ form.k|as_crispy_field }}
+                {{ form.g|as_crispy_field }}
+            </div>
+    <small style="color: grey;">Si no se completan los datos de a o de m se calcularan sus valores con k y g </small>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+        </div>
+        <div class="col-6">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            {{ form.method|as_crispy_field }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            {{ form.number_amount|as_crispy_field }}
+        </div>
+        <div class="col-6">
+            {{ form.interval_amount|as_crispy_field }}
+        </div>
+    </div>
+
+    {% endblock form %}
+    <div class="text-right">
+        <button class="btn btn-primary">Generar numeros</button>
+    </div>
+</form>
+
+{% endblock app_content %}
