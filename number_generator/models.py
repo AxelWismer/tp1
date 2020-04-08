@@ -42,6 +42,7 @@ class Data(models.Model):
     INTERVAL_CHOICES = ((5, '5'), (10, '10'), (15, '15'), (20, '20'))
     interval_amount = models.PositiveSmallIntegerField(u'cantidad de intervalos', choices=INTERVAL_CHOICES, default=INTERVAL_CHOICES[0][0])
     c_acum = models.FloatField('c acumulado', max_length=4, default=0)
+
     @property
     def numbers(self):
         return string_to_list(self.numbers_csv)
@@ -84,7 +85,6 @@ class Data(models.Model):
     # Chi-Cuadrado
     def generate_random_numbers(self):
         for i in range(self.number_amount):
-            # Number(value = truncate(random.random(), 4), data=self).save()
             self.add_number(truncate(random.random(), 4))
 
     def set_intervals(self):

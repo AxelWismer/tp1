@@ -21,6 +21,6 @@ from django.conf import settings
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
-                  path('', generic.TemplateView.as_view(template_name='index.html')),
+                  path('', generic.TemplateView.as_view(template_name='index.html'), name='index'),
                   path('number_generator/', include('number_generator.urls')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

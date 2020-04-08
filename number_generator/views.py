@@ -8,6 +8,7 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 class DataEntry(generic.FormView):
     model = Data
     form_class = DataForm
@@ -89,8 +90,6 @@ def add_graphic(request, pk):
     plt.legend()
     plt.show()
     return chi_detail(request, data.pk)
-
-
 
 
 class ChiMixEntry(generic.FormView):
