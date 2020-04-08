@@ -1,6 +1,11 @@
 <!-- Navbar-->
+{% load static %}
+
 <div class="d-flex flex-column flex-md-row align-items-center p-3 pr-md-4 mb-3 bg-white border-bottom shadow-sm">
-	{% include 'header/hello_user.html' %}
+
+	<div class="my-0 mr-md-auto">
+		<img width=40 src="{% static 'bar-graph.ico' %}">
+	</div>
 	<nav class="my-2 my-md-0 mr-4">
 		<!--Opciones de un usuario staff-->
 		<a class="p-2 text-dark" href="{% url 'index' %}">Inicio</a>
