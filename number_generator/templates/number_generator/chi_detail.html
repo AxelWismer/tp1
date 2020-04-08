@@ -9,8 +9,11 @@
 <!-- Elimina el asterisco de los tags    -->
 {% include 'custom/snippets/asterisk_field.html' %}
 
+<h1 class="text-center">Prueba de Ji-Cuadrada</h1>
+<hr>
 <div class="row">
     <div class="col-2">
+        <h3 class="text-center">Valores</h3>
         <table class="table table-sm">
             <thead class="thead-dark">
             <tr>
@@ -31,6 +34,7 @@
     </div>
 
     <div class="col-10">
+        <h3 class="text-center">Histograma</h3>
         <table class="table table-sm table-bordered">
             <thead class="thead-dark">
             <tr>
@@ -58,15 +62,16 @@
                 <td>{{interv.calculo_2}}</td>
                 <td>{{interv.calculo_3}}</td>
                 <td>{{interv.c}}</td>
-
             </tr>
             {% endfor %}
             </tbody>
         </table>
-
-        <div class="text-right">
-            <a class="btn btn-outline-dark" href="{% url 'number_generator:add_graphic' object.pk %}">Ver grafico</a>
+        <div class="text-center">
+        <img class='mb-2' src="/media/histograma.png" width=800>
         </div>
+<!--        <div class="text-right">-->
+<!--            <a class="btn btn-outline-dark" href="{% url 'number_generator:add_graphic' object.pk %}">Ver grafico</a>-->
+<!--        </div>-->
     </div>
 </div>
 {% endblock app_content %}

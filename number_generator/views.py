@@ -6,7 +6,6 @@ from .forms import DataForm, ChiForm, ChiMixForm
 from .models import Data
 import math
 import numpy as np
-import matplotlib.pyplot as plt
 
 
 class DataEntry(generic.FormView):
@@ -63,7 +62,7 @@ class ChiEntry(generic.FormView):
         data.generate_random_numbers()
         data.set_intervals()
         data.save()
-        return chi_detail(self.request, data.pk)
+        return add_graphic(self.request, data.pk)
 
 
 # Muestra todos los numeros creados hasta el momento
@@ -78,17 +77,25 @@ def chi_detail(request, pk):
 
 
 def add_graphic(request, pk):
+    import matplotlib.pyplot as plt
     data = get_object_or_404(Data, pk=pk)
     frec_esperada = []
     for i in range(data.number_amount):
         frec_esperada.append( i / data.number_amount)
+    # Setea los valores del grafico
     plt.xlabel('rango')
     plt.ylabel('cant. apariciones')
     plt.title('Conteo de frecuecias')
+    # Genera el grafico pasandole los datos y los intervalos
     plt.hist([data.numbers, frec_esperada], bins=data.interval_amount, rwidth=0.9,
              label=['frecuencia observada', 'frecuencia esperada'])
+    # Muestra las labels
     plt.legend()
-    plt.show()
+    # Guarda la figura como un archivo png
+    plt.savefig('media/histograma.png')
+    # Elimina la figura
+    plt.close()
+    # plt.show()
     return chi_detail(request, data.pk)
 
 
@@ -115,4 +122,4 @@ class ChiMixEntry(generic.FormView):
         data.save()
         data.set_intervals()
         data.save()
-        return chi_detail(self.request, data.pk)
+        return add_graphic(self.request, data.pk)
