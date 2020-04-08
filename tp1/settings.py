@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'custom',
     'number_generator',
-    'gpcharts',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
