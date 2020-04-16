@@ -66,9 +66,13 @@
             {% endfor %}
             </tbody>
         </table>
+
         <div class="text-center">
         <img class='mb-2' src="/media/histograma.png" width=800>
         </div>
+        <h5 class="text-center">El valor del estadistico de prueba c es {{object.c_acum}}</h5>
+        <h5 class="text-center">La cantidad de grados de libertad v es {{object.interval_amount|add:-1}}</h5>
+
 <!--        <div class="text-right">-->
 <!--            <a class="btn btn-outline-dark" href="{% url 'number_generator:add_graphic' object.pk %}">Ver grafico</a>-->
 <!--        </div>-->
